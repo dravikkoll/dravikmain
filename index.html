@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <title>AR Milkshake Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #ar-button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        model-viewer {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>View Cute Milkshake in AR</h2>
+    
+    <!-- Model Viewer for 3D Model -->
+    <model-viewer 
+        id="milkshakeModel"
+        src="https://raw.githubusercontent.com/dravikkoll/ar-models/main/cute_milkshake.glb"
+        alt="3D Model of Cute Milkshake"
+        camera-controls 
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look">
+    </model-viewer>
+
+    <!-- View in AR Button -->
+    <button id="ar-button" onclick="viewInAR()">View in AR</button>
+
+    <script>
+        function viewInAR() {
+            let modelViewer = document.getElementById("milkshakeModel");
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert("AR is not supported on your device or browser.");
+            }
+        }
+    </script>
+
+</body>
+</html>
